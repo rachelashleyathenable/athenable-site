@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+:root {
+  --color-navy: #0b2447;
+  --color-navy-2: #123468;
+  --color-blue: #1b5fad;
+  --color-blue-light: #7fa8e0;
+  --color-ice: #f4f6fa;
+  --color-ink: #0f2f5c;
+  --color-ink-muted: #52627d;
+  --color-line: rgba(15, 47, 92, 0.1);
+  --color-line-on-navy: rgba(255, 255, 255, 0.12);
+}
+
+@theme inline {
+  --color-navy: var(--color-navy);
+  --color-navy-2: var(--color-navy-2);
+  --color-blue: var(--color-blue);
+  --color-blue-light: var(--color-blue-light);
+  --color-ice: var(--color-ice);
+  --color-ink: var(--color-ink);
+  --color-ink-muted: var(--color-ink-muted);
+  --color-line: var(--color-line);
+  --color-line-on-navy: var(--color-line-on-navy);
+
+  --font-display: var(--font-space-grotesk);
+  --font-sans: var(--font-inter);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--color-ink);
+  background: #ffffff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  html {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: 3px;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
