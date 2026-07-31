@@ -50,7 +50,43 @@ export const postType = defineType({
       type: "datetime",
       initialValue: () => new Date().toISOString(),
     }),
+    defineField({
+      name: "metaDescription",
+      title: "Meta description (SEO)",
+      type: "text",
+      rows: 2,
+      group: "seo",
+      validation: (rule) => rule.max(160),
+    }),
+    defineField({
+      name: "focusKeyword",
+      title: "Mot-clé cible (SEO)",
+      type: "string",
+      group: "seo",
+    }),
+    defineField({
+      name: "aiGenerated",
+      title: "Généré par IA",
+      type: "boolean",
+      group: "seo",
+      initialValue: false,
+      readOnly: true,
+    }),
+    defineField({
+      name: "aiMeta",
+      title: "Métadonnées de génération IA",
+      type: "object",
+      group: "seo",
+      readOnly: true,
+      fields: [
+        defineField({ name: "model", type: "string", title: "Modèle" }),
+        defineField({ name: "generatedAt", type: "datetime", title: "Généré le" }),
+        defineField({ name: "sourceKeyword", type: "string", title: "Mot-clé source" }),
+        defineField({ name: "promptVersion", type: "string", title: "Version du prompt" }),
+      ],
+    }),
   ],
+  groups: [{ name: "seo", title: "SEO & IA" }],
   orderings: [
     {
       title: "Date de publication, plus récent d'abord",
