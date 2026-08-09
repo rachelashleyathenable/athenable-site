@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Facet } from "@/components/facet";
 
 type PollState = {
@@ -21,82 +22,67 @@ const initialState: PollState = {
   email: "",
 };
 
-const steps = [
+const STEP_DEFS = [
   {
     key: "pillar" as const,
-    question: "Quel type de contenu vous parle le plus ?",
+    questionKey: "step1Question",
     options: [
-      { value: "opportunites", label: "Les opportunités cachées dans un rapport ESG" },
-      { value: "analyse", label: "L'analyse de l'actualité d'une entreprise" },
-      { value: "temoignages", label: "Les témoignages et retours d'expérience" },
-      { value: "demos", label: "Voir un résultat concret en action" },
+      { value: "opportunites", labelKey: "step1Opportunites" },
+      { value: "analyse", labelKey: "step1Analyse" },
+      { value: "temoignages", labelKey: "step1Temoignages" },
+      { value: "demos", labelKey: "step1Demos" },
     ],
   },
   {
     key: "maturity" as const,
-    question: "Où en êtes-vous avec l'ESG aujourd'hui ?",
+    questionKey: "step2Question",
     options: [
-      { value: "debut", label: "On démarre tout juste" },
-      { value: "reporting", label: "On fait du reporting, sans plus" },
-      { value: "cherche_valeur", label: "On cherche à en tirer de la valeur business" },
-      { value: "mature", label: "On est déjà avancés sur le sujet" },
+      { value: "debut", labelKey: "step2Debut" },
+      { value: "reporting", labelKey: "step2Reporting" },
+      { value: "cherche_valeur", labelKey: "step2ChercheValeur" },
+      { value: "mature", labelKey: "step2Mature" },
     ],
   },
   {
     key: "role" as const,
-    question: "Vous êtes plutôt...",
+    questionKey: "step3Question",
     options: [
-      { value: "dirigeant", label: "Dirigeant·e / fondateur·rice" },
-      { value: "rse", label: "Responsable RSE / ESG" },
-      { value: "consultant", label: "Consultant·e" },
-      { value: "autre", label: "Autre" },
+      { value: "dirigeant", labelKey: "step3Dirigeant" },
+      { value: "rse", labelKey: "step3Rse" },
+      { value: "consultant", labelKey: "step3Consultant" },
+      { value: "autre", labelKey: "step3Autre" },
     ],
   },
   {
     key: "besoin" as const,
-    question: "Quel est votre besoin principal aujourd'hui ?",
+    questionKey: "step4Question",
     options: [
-      { value: "structurer", label: "Structurer notre démarche ESG" },
-      { value: "opportunites_business", label: "Identifier de nouvelles opportunités business" },
-      { value: "valoriser", label: "Valoriser et communiquer nos résultats ESG" },
-      { value: "autre_besoin", label: "Autre besoin" },
+      { value: "structurer", labelKey: "step4Structurer" },
+      { value: "opportunites_business", labelKey: "step4OpportunitesBusiness" },
+      { value: "valoriser", labelKey: "step4Valoriser" },
+      { value: "autre_besoin", labelKey: "step4Autre" },
     ],
   },
 ];
 
-const pillarCopy: Record<string, { tag: string; title: string; text: string }> = {
-  opportunites: {
-    tag: "Profil : chasseur d'opportunités",
-    title: "On vous envoie ça direct.",
-    text: 'Vous recevrez en priorité nos décryptages "3 opportunités cachées dans un rapport ESG", chaque vendredi.',
-  },
-  analyse: {
-    tag: "Profil : veille stratégique",
-    title: "Parfait, on a ce qu'il vous faut.",
-    text: "On vous enverra nos analyses d'actualités d'entreprises, avec ce que la plupart des gens ne voient pas.",
-  },
-  temoignages: {
-    tag: "Profil : preuve par l'exemple",
-    title: "Vous allez aimer nos interviews.",
-    text: "On vous partage les meilleures histoires d'opportunités business trouvées grâce à des projets ESG.",
-  },
-  demos: {
-    tag: "Profil : orienté résultat",
-    title: "On vous montre, pas on vous raconte.",
-    text: "On vous enverra nos démos concrètes : rapport en main, résultat en 5 minutes.",
-  },
-};
-
-const totalSteps = steps.length + 1;
+const totalSteps = STEP_DEFS.length + 1;
 
 export function Poll() {
+  const t = useTranslations("quiz");
   const [currentStep, setCurrentStep] = useState(1);
   const [state, setState] = useState<PollState>(initialState);
   const [status, setStatus] = useState<"idle" | "submitting" | "done" | "error">("idle");
 
   const isCaptureStep = currentStep === totalSteps;
 
-  function selectOption(key: (typeof steps)[number]["key"], value: string) {
+  const pillarCopy: Record<string, { tag: string; text: string }> = {
+    opportunites: { tag: t("pillarOpportunitesTag"), text: t("pillarOpportunitesText") },
+    analyse: { tag: t("pillarAnalyseTag"), text: t("pillarAnalyseText") },
+    temoignages: { tag: t("pillarTemoignagesTag"), text: t("pillarTemoignagesText") },
+    demos: { tag: t("pillarDemosTag"), text: t("pillarDemosText") },
+  };
+
+  function selectOption(key: (typeof STEP_DEFS)[number]["key"], value: string) {
     setState((s) => ({ ...s, [key]: value }));
   }
 
@@ -104,7 +90,7 @@ export function Poll() {
     if (isCaptureStep) {
       return Boolean(state.prenom.trim() && state.email.includes("@"));
     }
-    const step = steps[currentStep - 1];
+    const step = STEP_DEFS[currentStep - 1];
     return Boolean(state[step.key]);
   }
 
@@ -137,7 +123,7 @@ export function Poll() {
           {copy.tag}
         </div>
         <h3 className="mb-3 font-display text-2xl font-bold text-navy">
-          {state.prenom ? `${state.prenom}, m` : "M"}erci !
+          {state.prenom ? t("thanksWithName", { name: state.prenom }) : t("thanksPlain")}
         </h3>
         <p className="mx-auto max-w-md text-[15.5px] text-ink-muted">{copy.text}</p>
       </div>
@@ -160,16 +146,16 @@ export function Poll() {
       {!isCaptureStep ? (
         <div>
           <div className="mb-6 font-display text-xl font-bold text-navy">
-            {steps[currentStep - 1].question}
+            {t(STEP_DEFS[currentStep - 1].questionKey)}
           </div>
           <div className="flex flex-col gap-2.5">
-            {steps[currentStep - 1].options.map((opt) => {
-              const selected = state[steps[currentStep - 1].key] === opt.value;
+            {STEP_DEFS[currentStep - 1].options.map((opt) => {
+              const selected = state[STEP_DEFS[currentStep - 1].key] === opt.value;
               return (
                 <button
                   key={opt.value}
                   type="button"
-                  onClick={() => selectOption(steps[currentStep - 1].key, opt.value)}
+                  onClick={() => selectOption(STEP_DEFS[currentStep - 1].key, opt.value)}
                   className={`flex w-full items-center gap-3.5 rounded-[10px] border-[1.5px] px-[18px] py-4 text-left text-[15.5px] font-medium transition-colors ${
                     selected
                       ? "border-blue bg-blue/[0.07]"
@@ -177,7 +163,7 @@ export function Poll() {
                   }`}
                 >
                   <Facet className={selected ? "opacity-100" : "opacity-50"} />
-                  {opt.label}
+                  {t(opt.labelKey)}
                 </button>
               );
             })}
@@ -186,12 +172,12 @@ export function Poll() {
       ) : (
         <div>
           <div className="mb-6 font-display text-xl font-bold text-navy">
-            Recevez nos opportunités chaque semaine
+            {t("captureTitle")}
           </div>
           <div className="flex flex-col gap-3">
             <input
               type="text"
-              placeholder="Prénom"
+              placeholder={t("firstNamePlaceholder")}
               autoComplete="given-name"
               value={state.prenom}
               onChange={(e) => setState((s) => ({ ...s, prenom: e.target.value }))}
@@ -199,7 +185,7 @@ export function Poll() {
             />
             <input
               type="email"
-              placeholder="Email professionnel"
+              placeholder={t("emailPlaceholder")}
               autoComplete="email"
               value={state.email}
               onChange={(e) => setState((s) => ({ ...s, email: e.target.value }))}
@@ -207,9 +193,7 @@ export function Poll() {
             />
           </div>
           {status === "error" && (
-            <p className="mt-3 text-sm text-red-600">
-              Une erreur est survenue, réessayez dans quelques instants.
-            </p>
+            <p className="mt-3 text-sm text-red-600">{t("error")}</p>
           )}
         </div>
       )}
@@ -221,7 +205,7 @@ export function Poll() {
           disabled={currentStep === 1}
           className={`text-sm font-semibold text-ink-muted ${currentStep === 1 ? "invisible" : ""}`}
         >
-          ← Précédent
+          {t("prevBtn")}
         </button>
         <button
           type="button"
@@ -230,10 +214,10 @@ export function Poll() {
           className="rounded-lg bg-navy px-6 py-3 text-[14.5px] font-semibold text-white transition-colors hover:bg-blue disabled:cursor-not-allowed disabled:bg-line disabled:text-ink-muted"
         >
           {status === "submitting"
-            ? "Envoi..."
+            ? t("sendingBtn")
             : isCaptureStep
-              ? "Voir mon profil →"
-              : "Suivant →"}
+              ? t("seeProfileBtn")
+              : t("nextBtn")}
         </button>
       </div>
     </div>

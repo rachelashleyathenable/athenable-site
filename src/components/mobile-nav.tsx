@@ -1,17 +1,21 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { navLinks } from "@/lib/site-config";
+import { LocaleSwitcher } from "@/components/locale-switcher";
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
+  const t = useTranslations("nav");
+  const tMobile = useTranslations("mobileNav");
 
   return (
     <div className="md:hidden">
       <button
         type="button"
-        aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+        aria-label={open ? tMobile("close") : tMobile("open")}
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
         className="flex h-10 w-10 flex-col items-center justify-center gap-1.5"
@@ -35,9 +39,12 @@ export function MobileNav() {
                 onClick={() => setOpen(false)}
                 className="rounded-md px-3 py-3 text-[15px] font-medium text-navy hover:bg-ice"
               >
-                {link.label}
+                {t(link.key)}
               </Link>
             ))}
+            <div className="px-3 py-3">
+              <LocaleSwitcher />
+            </div>
           </nav>
         </div>
       )}

@@ -8,6 +8,7 @@ const articleSchema = z.object({
   metaDescription: z.string().max(160),
   focusKeyword: z.string(),
   tag: z.string(),
+  category: z.enum(["avantages-concurrentiels", "prise-de-decision", "gestion-donnees"]),
   excerpt: z.string(),
   paragraphs: z.array(z.string()).min(4),
 });
@@ -31,7 +32,7 @@ Consignes SEO :
 - La meta description fait au maximum 160 caractères et donne envie de cliquer.
 - L'article doit apporter une vraie valeur (pas de remplissage), structuré en paragraphes courts.
 - Ne jamais inventer de statistiques précises ou de sources non vérifiées.`,
-    prompt: `Rédige un article de blog optimisé SEO pour Athenable. ${brief}\n\nProduis un titre, une meta description, le mot-clé cible retenu, un tag court (catégorie), un extrait (2-3 phrases), et le corps de l'article sous forme de paragraphes de texte simple (pas de markdown, pas de HTML — juste des chaînes de texte, un paragraphe par élément du tableau).`,
+    prompt: `Rédige un article de blog optimisé SEO pour Athenable. ${brief}\n\nProduis un titre, une meta description, le mot-clé cible retenu, un tag court (label libre), une catégorie choisie parmi "avantages-concurrentiels" (avantages concurrentiels), "prise-de-decision" (prise de décision) ou "gestion-donnees" (gestion de données), un extrait (2-3 phrases), et le corps de l'article sous forme de paragraphes de texte simple (pas de markdown, pas de HTML — juste des chaînes de texte, un paragraphe par élément du tableau).`,
   });
 
   return object;

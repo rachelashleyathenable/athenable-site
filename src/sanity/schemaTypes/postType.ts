@@ -6,10 +6,37 @@ export const postType = defineType({
   type: "document",
   fields: [
     defineField({
+      name: "language",
+      title: "Langue",
+      type: "string",
+      options: {
+        list: [
+          { title: "Français", value: "fr" },
+          { title: "English", value: "en" },
+          { title: "Nederlands", value: "nl" },
+        ],
+      },
+      initialValue: "fr",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: "tag",
       title: "Tag",
       type: "string",
       description: 'Ex : "Cette semaine", "Analyse LinkedIn", "Interview"',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "category",
+      title: "Catégorie",
+      type: "string",
+      options: {
+        list: [
+          { title: "Avantages concurrentiels", value: "avantages-concurrentiels" },
+          { title: "Prise de décision", value: "prise-de-decision" },
+          { title: "Gestion de données", value: "gestion-donnees" },
+        ],
+      },
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -95,6 +122,10 @@ export const postType = defineType({
     },
   ],
   preview: {
-    select: { title: "title", subtitle: "tag" },
+    select: { title: "title", subtitle: "tag", language: "language" },
+    prepare: ({ title, subtitle, language }) => ({
+      title,
+      subtitle: `[${(language ?? "fr").toUpperCase()}] ${subtitle ?? ""}`,
+    }),
   },
 });

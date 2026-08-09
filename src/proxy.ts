@@ -1,7 +1,11 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import createIntlMiddleware from "next-intl/middleware";
+import { routing } from "./i18n/routing";
 
-export function proxy(request: NextRequest) {
+const intlMiddleware = createIntlMiddleware(routing);
+
+function checkAdminAuth(request: NextRequest) {
   const password = process.env.ADMIN_DASHBOARD_PASSWORD;
   const expected = password ? "Basic " + Buffer.from(`admin:${password}`).toString("base64") : null;
   const auth = request.headers.get("authorization");
@@ -13,9 +17,20 @@ export function proxy(request: NextRequest) {
     });
   }
 
-  return NextResponse.next();
+  return null;
+}
+
+export function proxy(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  if (pathname.startsWith("/admin") || pathname.startsWith("/api/seo")) {
+    const authResponse = checkAdminAuth(request);
+    return authResponse ?? NextResponse.next();
+  }
+
+  return intlMiddleware(request);
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/api/seo/:path*"],
+  matcher: ["/admin/:path*", "/api/seo/:path*", "/((?!api|studio|_next|.*\\..*).*)"],
 };

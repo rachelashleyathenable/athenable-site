@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import type { MouseEventHandler, ReactNode } from "react";
 
 type Variant = "primary" | "ghost" | "ghost-invert" | "white";

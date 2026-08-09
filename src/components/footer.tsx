@@ -1,13 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { FaLinkedin, FaInstagram, FaYoutube } from "react-icons/fa6";
+import { Link } from "@/i18n/navigation";
 import { siteConfig } from "@/lib/site-config";
-
-const legalLinks = [
-  { href: "/mentions-legales", label: "Mentions légales" },
-  { href: "/confidentialite", label: "Politique de confidentialité" },
-  { href: "/cgu", label: "CGU" },
-];
 
 const socialLinks = [
   { href: siteConfig.linkedin, label: "LinkedIn", Icon: FaLinkedin },
@@ -15,8 +10,15 @@ const socialLinks = [
   { href: siteConfig.youtube, label: "YouTube", Icon: FaYoutube },
 ];
 
-export function Footer() {
+export async function Footer() {
+  const t = await getTranslations("footer");
   const year = new Date().getFullYear();
+
+  const legalLinks = [
+    { href: "/mentions-legales", label: t("legalMentions") },
+    { href: "/confidentialite", label: t("legalPrivacy") },
+    { href: "/cgu", label: t("legalCgu") },
+  ];
 
   return (
     <footer className="border-t border-line-on-navy bg-navy text-white/60">
@@ -35,11 +37,15 @@ export function Footer() {
                 {siteConfig.name.toUpperCase()}
               </span>
             </Link>
-            <p className="mt-4 text-sm leading-relaxed">{siteConfig.tagline}</p>
+            <p className="mt-4 text-sm leading-relaxed">
+              {t("tagline1")}
+              <br />
+              {t("tagline2")}
+            </p>
           </div>
 
           <div>
-            <h3 className="mb-4 text-sm font-semibold text-white">Légal</h3>
+            <h3 className="mb-4 text-sm font-semibold text-white">{t("legalTitle")}</h3>
             <ul className="space-y-3 text-sm">
               {legalLinks.map((link) => (
                 <li key={link.href}>
@@ -52,7 +58,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="mb-4 text-sm font-semibold text-white">Suivez-nous</h3>
+            <h3 className="mb-4 text-sm font-semibold text-white">{t("followTitle")}</h3>
             <ul className="space-y-3 text-sm">
               {socialLinks.map(({ href, label, Icon }) => (
                 <li key={label}>
@@ -72,7 +78,7 @@ export function Footer() {
         </div>
 
         <div className="mt-14 border-t border-line-on-navy pt-8 text-sm">
-          © {year} {siteConfig.name}. Tous droits réservés.
+          © {year} {siteConfig.name}. {t("rights")}
         </div>
       </div>
     </footer>

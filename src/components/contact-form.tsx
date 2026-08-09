@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 export function ContactForm() {
+  const t = useTranslations("contact");
   const [values, setValues] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<"idle" | "submitting" | "done" | "error">("idle");
 
@@ -26,8 +28,8 @@ export function ContactForm() {
   if (status === "done") {
     return (
       <div className="rounded-2xl border border-line bg-ice p-8 text-center">
-        <p className="font-display text-lg font-bold text-navy">Message envoyé !</p>
-        <p className="mt-2 text-[15px] text-ink-muted">On vous répond au plus vite.</p>
+        <p className="font-display text-lg font-bold text-navy">{t("sentTitle")}</p>
+        <p className="mt-2 text-[15px] text-ink-muted">{t("sentText")}</p>
       </div>
     );
   }
@@ -37,7 +39,7 @@ export function ContactForm() {
       <input
         type="text"
         required
-        placeholder="Nom"
+        placeholder={t("namePlaceholder")}
         value={values.name}
         onChange={(e) => setValues((v) => ({ ...v, name: e.target.value }))}
         className="rounded-lg border-[1.5px] border-line px-4 py-3.5 text-[15px] focus:border-blue"
@@ -45,7 +47,7 @@ export function ContactForm() {
       <input
         type="email"
         required
-        placeholder="Email"
+        placeholder={t("emailPlaceholder")}
         value={values.email}
         onChange={(e) => setValues((v) => ({ ...v, email: e.target.value }))}
         className="rounded-lg border-[1.5px] border-line px-4 py-3.5 text-[15px] focus:border-blue"
@@ -53,20 +55,18 @@ export function ContactForm() {
       <textarea
         required
         rows={5}
-        placeholder="Votre message"
+        placeholder={t("messagePlaceholder")}
         value={values.message}
         onChange={(e) => setValues((v) => ({ ...v, message: e.target.value }))}
         className="resize-none rounded-lg border-[1.5px] border-line px-4 py-3.5 text-[15px] focus:border-blue"
       />
-      {status === "error" && (
-        <p className="text-sm text-red-600">Une erreur est survenue, réessayez.</p>
-      )}
+      {status === "error" && <p className="text-sm text-red-600">{t("error")}</p>}
       <button
         type="submit"
         disabled={status === "submitting"}
         className="self-start rounded-lg bg-navy px-7 py-3.5 text-[15px] font-semibold text-white transition-colors hover:bg-blue disabled:cursor-not-allowed disabled:opacity-50"
       >
-        {status === "submitting" ? "Envoi..." : "Envoyer →"}
+        {status === "submitting" ? t("sending") : t("send")}
       </button>
     </form>
   );

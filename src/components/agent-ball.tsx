@@ -1,16 +1,20 @@
 export function AgentBall({
   onClick,
   open,
+  openLabel,
+  closeLabel,
 }: {
   onClick?: () => void;
   open?: boolean;
+  openLabel: string;
+  closeLabel: string;
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
-      aria-label={open ? "Fermer l'assistant Athenable" : "Ouvrir l'assistant Athenable"}
-      title={open ? "Fermer l'assistant Athenable" : "Ouvrir l'assistant Athenable"}
+      aria-label={open ? closeLabel : openLabel}
+      title={open ? closeLabel : openLabel}
       className="fixed bottom-6 left-6 z-40 flex h-11 w-11 items-center justify-center transition-transform hover:scale-105"
     >
       <span className="relative block h-full w-full">
