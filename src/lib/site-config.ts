@@ -15,8 +15,8 @@ export const siteConfig = {
   methodologyUrl: "https://www.reddit.com/r/AnalyseEtDecision",
   // En attendant que l'app Athenable Starter soit prête, redirige vers le groupe LinkedIn communautaire
   starterAppUrl: "https://www.linkedin.com/groups/35150004/",
-  // TODO: remplacer par le vrai lien de connexion Microsoft / app Athenable for Business
-  businessLoginUrl: "https://REMPLACER_LIEN_ATHENABLE_BUSINESS",
+  // Page interne "Athenable pour entreprise" (onglets client / non-client)
+  businessLoginUrl: "/entreprise",
 } as const;
 
 export const navLinks = [

@@ -52,9 +52,9 @@
     "slogan2": "anticipeer op morgen.",
     "chooseTitle": "Kies uw ervaring",
     "chooseText": "Of u nu ondernemer bent of binnen een bedrijf werkt, ontdek de Athenable-ervaring die het beste bij uw behoeften past.",
-    "entrepreneurTitle": "Athenable for Entrepreneur",
+    "entrepreneurTitle": "Athenable voor ondernemers",
     "entrepreneurHover": "Ontdek een nieuwe tool",
-    "businessTitle": "Athenable for Business",
+    "businessTitle": "Athenable voor bedrijven",
     "businessHover": "Laten we contact opnemen"
   },
   "about": {
@@ -213,5 +213,26 @@
       "rightsTitle": "Uw rechten",
       "rightsTextBefore": "In overeenstemming met de AVG heeft u recht op inzage, rectificatie, verwijdering, beperking en bezwaar met betrekking tot uw gegevens. Om dit recht uit te oefenen, neemt u contact met ons op:"
     }
+  },
+  "enterprise": {
+    "metaTitle": "Athenable voor bedrijven — Athenable",
+    "title": "Athenable voor bedrijven",
+    "subtitle": "Of u nu al klant bent of niet, kies uw traject.",
+    "clientCardTitle": "Ik ben klant",
+    "clientCardText": "Log in met uw toegangscode om uw tools terug te vinden.",
+    "clientCardCta": "Doorgaan",
+    "prospectCardTitle": "Ik ben nog geen klant",
+    "prospectCardText": "Ontdek hoe Athenable uw bedrijf kan ondersteunen.",
+    "prospectCardCta": "Kies een tijdslot",
+    "back": "Terug",
+    "welcomeTitle": "Hallo! Hoe gaat het vandaag?",
+    "welcomeText": "Zullen we inloggen en aan de slag gaan?",
+    "connectCta": "Inloggen",
+    "codeIntro": "Voer de toegangscode in die u hebt ontvangen.",
+    "codeLabel": "Toegangscode",
+    "submit": "Naar mijn tools",
+    "submitting": "Bezig met inloggen…",
+    "errorInvalid": "Onjuiste toegangscode.",
+    "errorGeneric": "Er is iets misgegaan. Probeer het opnieuw."
   }
 }

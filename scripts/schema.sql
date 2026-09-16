@@ -50,3 +50,14 @@ create table if not exists seo_activity_log (
   related_sanity_doc_id text,
   created_at timestamptz not null default now()
 );
+
+-- Stockage clé-valeur partagé des espaces clients "Athenable pour entreprise".
+-- Remplace le window.storage du runtime des artéfacts Claude ; une entrée par
+-- (client_slug, skey). Voir src/app/api/client/storage/route.ts.
+create table if not exists client_kv (
+  client_slug text not null,
+  skey text not null,
+  svalue text not null,
+  updated_at timestamptz not null default now(),
+  primary key (client_slug, skey)
+);

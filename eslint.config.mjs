@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Artéfacts clients vendus tels quels (code généré, non typé) — voir README.
+    "src/components/artifacts/**",
   ]),
 ]);
 

@@ -52,7 +52,7 @@
     "slogan2": "anticipate tomorrow.",
     "chooseTitle": "Choose your experience",
     "chooseText": "Whether you're an entrepreneur or you work within a company, discover the Athenable experience best suited to your needs.",
-    "entrepreneurTitle": "Athenable for Entrepreneur",
+    "entrepreneurTitle": "Athenable for Entrepreneurs",
     "entrepreneurHover": "Discover a new tool",
     "businessTitle": "Athenable for Business",
     "businessHover": "Let's get in touch"
@@ -213,5 +213,26 @@
       "rightsTitle": "Your rights",
       "rightsTextBefore": "In accordance with the GDPR, you have the right to access, rectify, erase, restrict, and object regarding your data. To exercise it, contact us:"
     }
+  },
+  "enterprise": {
+    "metaTitle": "Athenable for Business — Athenable",
+    "title": "Athenable for Business",
+    "subtitle": "Whether you're already a client or not, choose your path.",
+    "clientCardTitle": "I'm a client",
+    "clientCardText": "Sign in with your access code to find your tools.",
+    "clientCardCta": "Continue",
+    "prospectCardTitle": "I'm not a client yet",
+    "prospectCardText": "Discover how Athenable can support your company.",
+    "prospectCardCta": "Pick a time slot",
+    "back": "Back",
+    "welcomeTitle": "Hello! How are you today?",
+    "welcomeText": "Shall we log in and get to work?",
+    "connectCta": "Log in",
+    "codeIntro": "Enter the access code you were given.",
+    "codeLabel": "Access code",
+    "submit": "Access my tools",
+    "submitting": "Signing in…",
+    "errorInvalid": "Incorrect access code.",
+    "errorGeneric": "Something went wrong. Please try again."
   }
 }
