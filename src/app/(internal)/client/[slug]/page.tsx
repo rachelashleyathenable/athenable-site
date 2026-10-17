@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { CLIENT_COOKIE, getClientBySlug, verifySessionToken } from "@/lib/clients";
 import { ClientLogoutButton } from "@/components/client-logout-button";
 import { ClientDataTools } from "@/components/client-data-tools";
+import { ClientToolCard } from "@/components/client-tool-card";
 
 // Menu de l'espace client : liste tous les artéfacts du client, cliquables.
 export default async function ClientMenuPage({
@@ -55,21 +56,12 @@ export default async function ClientMenuPage({
 
         <div className="grid gap-5 sm:grid-cols-2">
           {client.artifacts.map((artifact) => (
-            <Link
+            <ClientToolCard
               key={artifact.id}
-              href={`/client/${slug}/${artifact.id}`}
-              className="group rounded-xl border border-line bg-white p-6 shadow-sm transition-colors duration-150 hover:border-navy"
-            >
-              <h2 className="mb-2 font-display text-lg font-bold text-navy">
-                {artifact.title}
-              </h2>
-              <p className="mb-4 text-[14.5px] leading-relaxed text-ink-muted">
-                {artifact.description}
-              </p>
-              <span className="text-sm font-semibold text-blue group-hover:underline">
-                Ouvrir →
-              </span>
-            </Link>
+              slug={slug}
+              artifact={artifact}
+              trackEvent={slug === "minova" ? "ouvrir_atelier" : undefined}
+            />
           ))}
         </div>
 

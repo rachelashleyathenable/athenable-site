@@ -234,5 +234,16 @@
     "submitting": "Bezig met inloggen…",
     "errorInvalid": "Onjuiste toegangscode.",
     "errorGeneric": "Er is iets misgegaan. Probeer het opnieuw."
+  },
+  "entrepreneur": {
+    "metaTitle": "Athenable voor ondernemers — Athenable",
+    "title": "Athenable voor ondernemers",
+    "subtitle": "Of u nu al klant bent of niet, kies uw traject.",
+    "clientCardTitle": "Ik ben al klant",
+    "clientCardText": "Log in met uw toegangscode om uw tools terug te vinden.",
+    "clientCardCta": "Doorgaan",
+    "prospectCardTitle": "Ik ben nog geen klant",
+    "prospectCardText": "Word lid van de Athenable LinkedIn-groep voor ondernemers en ontdek onze tools.",
+    "prospectCardCta": "Word lid van de groep"
   }
 }

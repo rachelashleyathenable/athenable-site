@@ -234,5 +234,16 @@
     "submitting": "Connexion…",
     "errorInvalid": "Code d'accès incorrect.",
     "errorGeneric": "Une erreur est survenue. Veuillez réessayer."
+  },
+  "entrepreneur": {
+    "metaTitle": "Athenable pour entrepreneur — Athenable",
+    "title": "Athenable pour entrepreneur",
+    "subtitle": "Que vous soyez déjà client ou non, choisissez votre parcours.",
+    "clientCardTitle": "Je suis déjà client",
+    "clientCardText": "Connectez-vous avec votre code d'accès pour retrouver vos outils.",
+    "clientCardCta": "Continuer",
+    "prospectCardTitle": "Je ne suis pas encore client",
+    "prospectCardText": "Rejoignez le groupe LinkedIn Athenable pour entrepreneurs et découvrez nos outils.",
+    "prospectCardCta": "Rejoindre le groupe"
   }
 }

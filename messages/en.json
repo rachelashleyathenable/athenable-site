@@ -234,5 +234,16 @@
     "submitting": "Signing in…",
     "errorInvalid": "Incorrect access code.",
     "errorGeneric": "Something went wrong. Please try again."
+  },
+  "entrepreneur": {
+    "metaTitle": "Athenable for Entrepreneurs — Athenable",
+    "title": "Athenable for Entrepreneurs",
+    "subtitle": "Whether you're already a client or not, choose your path.",
+    "clientCardTitle": "I'm already a client",
+    "clientCardText": "Sign in with your access code to find your tools.",
+    "clientCardCta": "Continue",
+    "prospectCardTitle": "I'm not a client yet",
+    "prospectCardText": "Join the Athenable LinkedIn group for entrepreneurs and discover our tools.",
+    "prospectCardCta": "Join the group"
   }
 }

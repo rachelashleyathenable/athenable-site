@@ -7,6 +7,10 @@ export type ClientArtifact = {
   id: string; // identifiant technique, présent dans l'URL /client/<slug>/<id>
   title: string; // titre affiché dans le menu
   description: string; // sous-titre de la carte
+  // Si présent, la carte ouvre directement cette URL (nouvel onglet) au lieu
+  // de /client/<slug>/<id>. Utilisé quand l'outil dépend du runtime Claude
+  // (assistant, stockage, recherche web) et ne peut pas être réhébergé sur Vercel.
+  externalUrl?: string;
 };
 
 export type Client = {
@@ -29,6 +33,35 @@ export const CLIENTS: readonly Client[] = [
         title: "Profils & Formation d'équipe",
         description:
           "Tests DISC / MBTI, profils individuels, parcours de formation et suivi d'équipe.",
+      },
+    ],
+  },
+  {
+    slug: "minova",
+    name: "Minova",
+    artifacts: [
+      {
+        id: "atelier-minova",
+        title: "Atelier Minova",
+        description:
+          "BD, lunettes, financements et prompts Firefly : tout ton projet au même endroit.",
+        // L'atelier vit sur Claude (assistant, stockage, veille financement liés
+        // au compte Claude d'Alessia) : le bouton y mène, il n'est pas réhébergé ici.
+        externalUrl: "https://claude.ai/artifact/A4w5CvrAqfvMqAbnHGHLGa",
+      },
+    ],
+  },
+  {
+    // Premier entrepreneur "Athenable pour entrepreneur". Renommer le nom/slug
+    // si besoin (le code d'accès est la variable d'env CLIENT_ISAAC_CODE).
+    slug: "isaac",
+    name: "Isaac",
+    artifacts: [
+      {
+        id: "structuration-app",
+        title: "Structuration juridique",
+        description:
+          "Questionnaire guidé, recommandation de structure et de juridiction, explications IA, échange et plan d'action.",
       },
     ],
   },

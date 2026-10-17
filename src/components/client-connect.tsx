@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { useTranslations } from "next-intl";
+import { track } from "@vercel/analytics";
 import { Button } from "@/components/button";
 
 // Écran de l'espace client (page /entreprise/connexion) : d'abord un accueil
@@ -27,6 +28,10 @@ export function ClientConnect() {
       });
       if (res.ok) {
         const data = (await res.json()) as { redirect?: string };
+        // Code correct : on mesure la connexion (client = slug, ex. "minova").
+        // Le slug est déduit du redirect serveur "/client/<slug>".
+        const slug = data.redirect?.split("/")[2];
+        if (slug) track("connexion_client", { client: slug });
         window.location.href = data.redirect ?? "/";
         return;
       }

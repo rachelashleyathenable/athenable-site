@@ -64,7 +64,7 @@ export default async function ServicesPage({
   const t = await getTranslations("services");
 
   const experiences = [
-    { title: t("entrepreneurTitle"), hoverLabel: t("entrepreneurHover"), href: siteConfig.starterAppUrl },
+    { title: t("entrepreneurTitle"), hoverLabel: t("entrepreneurHover"), href: "/entrepreneur" },
     { title: t("businessTitle"), hoverLabel: t("businessHover"), href: siteConfig.businessLoginUrl },
   ];
 
