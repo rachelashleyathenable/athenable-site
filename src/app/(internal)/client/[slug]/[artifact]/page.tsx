@@ -10,7 +10,7 @@ import NovaHeritageClient from "@/components/artifacts/nova-heritage-client";
 import StructurationClient from "@/components/artifacts/structuration-client";
 
 // Aiguillage id d'artéfact -> composant. Ajouter un artéfact = une entrée ici.
-// Les artéfacts avec `externalUrl` (ex. atelier-minova) ne passent jamais par
+// Les artéfacts avec `externalUrl` (ex. les outils Minova) ne passent jamais par
 // cette page : la carte ouvre directement l'URL externe.
 const ARTIFACT_COMPONENTS: Record<string, ComponentType> = {
   "nova-heritage-app": NovaHeritageClient,

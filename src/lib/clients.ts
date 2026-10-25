@@ -41,13 +41,25 @@ export const CLIENTS: readonly Client[] = [
     name: "Minova",
     artifacts: [
       {
-        id: "atelier-minova",
-        title: "Atelier Minova",
+        id: "minova-communication",
+        title: "Communication",
         description:
-          "BD, lunettes, financements et prompts Firefly : tout ton projet au même endroit.",
-        // L'atelier vit sur Claude (assistant, stockage, veille financement liés
-        // au compte Claude d'Alessia) : le bouton y mène, il n'est pas réhébergé ici.
-        externalUrl: "https://claude.ai/artifact/A4w5CvrAqfvMqAbnHGHLGa",
+          "Posts, calendrier de publication, newsletter et statistiques HubSpot.",
+        externalUrl: "https://claude.ai/artifact/9a8r2uej2e96whyEmYrP19",
+      },
+      {
+        id: "minova-design",
+        title: "Design",
+        description:
+          "Prompts Firefly, retouches Adobe, modélisation 3D, workshop et page du QR code.",
+        externalUrl: "https://claude.ai/artifact/YMJ2NNZY6UnHeAg926Kgsj",
+      },
+      {
+        id: "minova-business-plan",
+        title: "Business plan",
+        description:
+          "Business plan, documents et veille financement automatique.",
+        externalUrl: "https://claude.ai/artifact/87EE3f5UKX31Rpv3eVXA5u",
       },
     ],
   },

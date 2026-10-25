@@ -41,7 +41,7 @@ export function ClientToolCard({
         target="_blank"
         rel="noopener noreferrer"
         onClick={() => {
-          if (trackEvent) track(trackEvent, { client: slug });
+          if (trackEvent) track(trackEvent, { client: slug, outil: artifact.id });
         }}
         className={className}
       >
@@ -54,7 +54,7 @@ export function ClientToolCard({
     <Link
       href={`/client/${slug}/${artifact.id}`}
       onClick={() => {
-        if (trackEvent) track(trackEvent, { client: slug });
+        if (trackEvent) track(trackEvent, { client: slug, outil: artifact.id });
       }}
       className={className}
     >
