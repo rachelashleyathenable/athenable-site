@@ -61,3 +61,22 @@ create table if not exists client_kv (
   updated_at timestamptz not null default now(),
   primary key (client_slug, skey)
 );
+
+-- Veille financement automatique (src/lib/veille/run.ts, créée aussi à la volée).
+create table if not exists veille_financement (
+  client_slug text not null,
+  id text not null,
+  data jsonb not null,
+  first_seen timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  primary key (client_slug, id)
+);
+
+create table if not exists veille_runs (
+  id serial primary key,
+  client_slug text not null,
+  status text not null,
+  found integer not null default 0,
+  detail text,
+  created_at timestamptz not null default now()
+);
